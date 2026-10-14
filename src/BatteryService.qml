@@ -261,4 +261,11 @@ Item {
             title, d.model + " " + d.pct + "%"];
         notifier.running = true;
     }
+
+    // Draws the charge reminder on the shutdown OSD; reads the same published
+    // device list and threshold the widget uses.
+    ShutdownReminder {
+        devices: svc.devices
+        lowThreshold: svc.lowThreshold
+    }
 }

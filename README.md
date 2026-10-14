@@ -23,6 +23,9 @@ popup.
 - **Two-tier notifications** — normal urgency at the warning threshold,
   critical urgency below that; re-armed on recharge, with an optional
   repeat while still low so you don't miss it.
+- **Shutdown reminder** — while the machine shuts down, the on-screen display
+  asks you to charge the peripherals that are low, so the last thing on
+  screen is what to plug in. See [Shutdown reminder](#shutdown-reminder).
 
 ## Install
 
@@ -78,6 +81,20 @@ omarchy launch config-editor ~/.config/omarchy/shell.json
 | `notifyOnLow`          | boolean     | true                                | Desktop notification on low               |
 | `notifyRepeatMinutes`  | integer     | 0                                   | Re-notify every N minutes while still low (0 = once) |
 | `deviceTypes`          | multiselect | mouse, keyboard, headset, gamepad   | Which device types to show                |
+
+## Shutdown reminder
+
+While the machine shuts down, the widget turns the shell's on-screen display
+into a reminder — **Charge your devices** — shown whenever a peripheral is at
+or below `lowThreshold` and not charging. The last look at the screen before
+it powers off doubles as the moment to plug the keyboard or mouse in.
+
+No setup or extra configuration: the service listens for logind's
+`PrepareForShutdown` announcement on the system bus, and the shell is still
+alive to draw when it arrives — so the reminder works the same whether the
+shutdown came from the Omarchy menu, a keybinding, the physical power button
+or `systemctl poweroff` in a terminal. With nothing low, the stock "Shutting
+down" notice is left untouched.
 
 ## How it works
 

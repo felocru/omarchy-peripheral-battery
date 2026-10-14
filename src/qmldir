@@ -9,4 +9,5 @@ singleton DeviceIcons DeviceIcons.qml
 # them in via `import "components"` and they reach back here via `import ".."`.
 BatteryService BatteryService.qml
 DevicePanel DevicePanel.qml
+ShutdownReminder ShutdownReminder.qml
 Widget Widget.qml
